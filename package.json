@@ -1,0 +1,59 @@
+{
+  "name": "fast-set",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack",
+    "build": "webpack build --mode=production",
+    "test": "jest",
+    "test_watch": "jest --watch",
+    "test_coverage": "jest --coverage"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "transform": {
+      "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!variables/.*)"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wexelus/fast-set.git"
+  },
+  "keywords": [
+    "fast",
+    "set",
+    "bit",
+    "mask",
+    "bitwise"
+  ],
+  "author": "Wexelus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wexelus/fast-set/issues"
+  },
+  "homepage": "https://github.com/Wexelus/fast-set#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.1",
+    "babel-jest": "^27.0.6",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.1",
+    "jest": "^27.0.6",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "ts-jest": "^27.0.5"
+  }
+}
