@@ -1,11 +1,12 @@
 {
-  "name": "fast-set",
+  "name": "fast-int-set",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
     "build": "webpack build --mode=production",
+    "benchmark": "ts-node-dev benchmark/index.ts",
     "test": "jest",
     "test_watch": "jest --watch",
     "test_coverage": "jest --coverage"
@@ -22,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Wexelus/fast-set.git"
+    "url": "git+https://github.com/TheLucifurry/fast-int-set.git"
   },
   "keywords": [
     "fast",
@@ -31,29 +32,29 @@
     "mask",
     "bitwise"
   ],
-  "author": "Wexelus",
+  "author": "TheLucifurry",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Wexelus/fast-set/issues"
+    "url": "https://github.com/TheLucifurry/fast-int-set/issues"
   },
-  "homepage": "https://github.com/Wexelus/fast-set#readme",
+  "homepage": "https://github.com/TheLucifurry/fast-int-set#readme",
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4",
     "@babel/preset-typescript": "^7.15.0",
     "@types/jest": "^27.0.1",
-    "babel-jest": "^27.0.6",
+    "babel-jest": "^27.1.0",
     "babel-loader": "^8.2.2",
+    "benny": "^3.6.15",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.1",
-    "jest": "^27.0.6",
+    "eslint-plugin-import": "^2.24.2",
+    "jest": "^27.1.0",
+    "ts-jest": "^27.0.5",
     "ts-loader": "^9.2.5",
-    "typescript": "^4.3.5",
-    "webpack": "^5.51.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2",
+    "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0"
-  },
-  "dependencies": {
-    "ts-jest": "^27.0.5"
   }
 }
