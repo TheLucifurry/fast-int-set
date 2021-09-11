@@ -13,11 +13,14 @@ module.exports = {
   devtool: IS_PROD ? false : 'source-map',
   watch: !IS_PROD,
   entry: {
-    'index': PATHS.SRC + '/index.ts'
+    'index': PATHS.SRC + '/index.ts',
   },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: "[name].js"
+    path: PATHS.DIST,
+    filename: '[name].js',
+    globalObject: 'this',
+    library: 'fastset',
+    libraryTarget: 'umd',
   },
   resolve: {
     extensions: ['.ts', '.js']
