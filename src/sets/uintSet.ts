@@ -43,14 +43,17 @@ export default class UintSet implements IFastSetUint {
 
   forEach(callback: (item: number) => void): void {
     const data = this.P, len = data.length;
-    for (let cellIndex = 0, item = 0; cellIndex < len; cellIndex++) {
-      if(!data[cellIndex]) {
+    let cellIndex = -1, item = 0;
+    while (++cellIndex < len) {
+      if (!data[cellIndex]) {
         item += MAX_BITS;
-        continue;
-      }
-      for (let i = 0; i < MAX_BITS; i++, item++) {
-        if(data[cellIndex] & (1 << i)) {
-          callback(item);
+      } else {
+        let i = -1;
+        while (++i < MAX_BITS) {
+          if(data[cellIndex] & (1 << i)) {
+            callback(item);
+          }
+          item++;
         }
       }
     }
@@ -58,7 +61,6 @@ export default class UintSet implements IFastSetUint {
 
   values(): number[] {
     const res: number[] = [];
-    // const res: number[] = new Array(this.P.length);
     let ix = 0;
     this.forEach(item => res[ix++] = item);
     return res;
