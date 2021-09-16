@@ -1,26 +1,8 @@
 import Serializer from '../src/serializer';
-import { MAX_BITS } from '../src/consts';
-import FS from '../src/index';
+import FastIntSet from '../src/index';
+import { sort, createArrayWithRandomInt } from './utils';
 
-const FIS = FS.UintSet;
-
-function sort(arr: number[]): number[] {
-  return arr.sort((a, b) => a - b);;
-}
-
-function getRandomInt(min: number, max: number): number {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function createArrayWithRandomInt(length: number, min: number, max: number): number[] {
-  const iterateItems: number[] = [];
-  for (let i = 0; i < length; i++) {
-    iterateItems[i] = getRandomInt(min, max);
-  }
-  return iterateItems;
-}
+const FIS = FastIntSet.UintSet;
 
 describe('Serializer', ()=>{
   it('Serialise to string: simple values', () => {
