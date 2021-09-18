@@ -4,8 +4,8 @@ import each from './utils/each';
 
 interface ISerializer {
   toString: (fis: IStore, headless?: boolean) => string
-  fromString(fastIntSetToFill: IFastSet, data: string): boolean
-  fromString(fastIntSetToFill: IFastSet, data: string, headless: boolean, targetVersion: string): boolean
+  fromString(fastIntSetToFill: IFastSet<any>, data: string): boolean
+  fromString(fastIntSetToFill: IFastSet<any>, data: string, headless: boolean, targetVersion: string): boolean
 }
 
 const version = '0'; // NOTE: Raise the version when you change the algorithm of the following function
