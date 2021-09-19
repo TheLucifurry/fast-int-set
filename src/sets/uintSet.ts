@@ -1,14 +1,16 @@
 import each from '../utils/each';
-import { MAX_ARRAY_LENGTH, MAX_BITS } from '../consts';
+import { MAX_BITS } from '../consts';
 import countBits from '../utils/countBits';
-import { min2, max2 } from '../utils/extremum';
-export default class UintSet implements IFastSetUint<UintSet> {
-  static MAX_UINT = MAX_ARRAY_LENGTH * MAX_BITS;
+import { intersection, union, difference, symmetricDifference } from '../core';
+import BaseSet from './baseSet';
+
+export default class UintSet extends BaseSet implements IFastSetUint<UintSet> {
   static TAG = 'UintSet';
 
   P: number[];
 
   constructor(items: number[] = []) {
+    super();
     this.P = [];
     each(items, this.add.bind(this))
   }
@@ -59,46 +61,27 @@ export default class UintSet implements IFastSetUint<UintSet> {
     }
   }
 
-  values(): number[] {
-    const res: number[] = [];
-    let ix = 0;
-    this.forEach(item => res[ix++] = item);
-    return res;
-  }
-
   intersection(set: UintSet): UintSet {
     const res = new UintSet();
-    let i = min2(this.P.length, set.P.length);
-    while (i--) {
-      res.P[i] = this.P[i] & set.P[i];
-    }
+    intersection(res.P, this.P, set.P);
     return res;
   }
 
   union(set: UintSet): UintSet {
     const res = new UintSet();
-    let i = max2(this.P.length, set.P.length);
-    while (i--) {
-      res.P[i] = this.P[i] | set.P[i];
-    }
+    union(res.P, this.P, set.P);
     return res;
   }
 
   difference(set: UintSet): UintSet {
     const res = new UintSet();
-    let i = this.P.length;
-    while (i--) {
-      res.P[i] = this.P[i] & ~set.P[i];
-    }
+    difference(res.P, this.P, set.P);
     return res;
   }
 
   symmetricDifference(set: UintSet): UintSet {
     const res = new UintSet();
-    let i = max2(this.P.length, set.P.length);
-    while (i--) {
-      res.P[i] = this.P[i] ^ set.P[i];
-    }
+    symmetricDifference(res.P, this.P, set.P);
     return res;
   }
 }
