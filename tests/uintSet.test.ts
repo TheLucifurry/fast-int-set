@@ -16,8 +16,8 @@ describe.each`
   it('Support many different integer values', ()=>{
     const items = [
       ...createArrayOfUint(MAX_BITS * 10),
-      ...createArrayWithRandomInt(10, 1_000_000, FIS.MAX_UINT),
-      FIS.MAX_UINT
+      ...createArrayWithRandomInt(10, 1_000_000, FIS.MAX_INTEGER),
+      FIS.MAX_INTEGER
     ];
     const itemsSorted = sort(items);
     const fs = new FIS(items);
@@ -26,8 +26,8 @@ describe.each`
       expect(fs.has(item)).toBe(true);
     });
 
-    fs.delete(FIS.MAX_UINT)
-    expect(fs.has(FIS.MAX_UINT)).toBe(false);
+    fs.delete(FIS.MAX_INTEGER)
+    expect(fs.has(FIS.MAX_INTEGER)).toBe(false);
   })
 
   it('Delete items', ()=>{

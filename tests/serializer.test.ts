@@ -54,7 +54,7 @@ describe('Serializer', ()=>{
   it.skip('Serialise and deserialize extra large numbers', () => {
 
     const items = [
-      ...createArrayWithRandomInt(10, 0, FIS.MAX_UINT / 64),
+      ...createArrayWithRandomInt(10, 0, FIS.MAX_INTEGER / 64),
       // FIS.MAX_UINT, // TODO: FIS.MAX_UINT is must be supported, research the trouble, and fix it if possible
     ];
     const itemsSorted = sort(items);

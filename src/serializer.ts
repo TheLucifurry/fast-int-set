@@ -1,25 +1,25 @@
 import binToHex from './utils/binToHex';
-import { SERIALIZED_STRING_PREFIX } from './consts';
+import { ESign, SERIALIZED_STRING_PREFIX } from './consts';
 import each from './utils/each';
 
 interface ISerializer {
   toString: (fis: IStore, headless?: boolean) => string
-  fromString(fastIntSetToFill: IFastSet<any>, data: string): boolean
-  fromString(fastIntSetToFill: IFastSet<any>, data: string, headless: boolean, targetVersion: string): boolean
+  fromString(fastIntSetToFill: IStore, data: string): boolean
+  fromString(fastIntSetToFill: IStore, data: string, headless: boolean, targetVersion: string): boolean
 }
 
 const version = '0'; // NOTE: Raise the version when you change the algorithm of the following function
-function dataStringify(data: FastSetDataField, prefix = ''): string {
+function dataStringify(data: DataField, prefix = ''): string {
   let res = prefix;
   each(data, item => res += item ? binToHex(item) : '-')
   return res;
 }
 
-function dataParseV1(dataFieldToFill: FastSetDataField, serialized: string): void {
+function dataParseV1(DataFieldSegmentToFill: DataField, serialized: string): void {
   const cells = serialized.match(/[\da-f]{8}|-/g) || [];
   let ix = 0;
   each(cells, cell => {
-    dataFieldToFill[ix++] = cell === '-' ? 0 : parseInt(cell, 16);
+    DataFieldSegmentToFill[ix++] = cell === '-' ? 0 : parseInt(cell, 16);
   });
 }
 // NOTE: Don't remove old versions of algorithms if you add new
@@ -29,10 +29,10 @@ const dataParsersList: typeof dataParseV1[] = [
 
 const Serializer: ISerializer = {
   toString(fastIntegerSet, headless = false) {
-    const hasNegative = !!fastIntegerSet.N;
+    const hasNegative = !!fastIntegerSet.D[ESign.NEGATIVE].length;
 
-    let dataPositive = dataStringify(fastIntegerSet.P);
-    let dataNegative = hasNegative ? dataStringify(fastIntegerSet.N as FastSetDataField, '.') : '';
+    let dataPositive = dataStringify(fastIntegerSet.D[ESign.POSITIVE]);
+    let dataNegative = hasNegative ? dataStringify(fastIntegerSet.D[ESign.NEGATIVE] as DataField, '.') : '';
     const data = dataPositive + (hasNegative ? '.' + dataNegative : '');
 
     if(headless) return data;
@@ -60,9 +60,9 @@ const Serializer: ISerializer = {
     }
 
     const dataParse = dataParsersList[+version];
-    dataParse(fastIntSetToFill.P, positive);
-    if(negative && fastIntSetToFill.N){
-      dataParse(fastIntSetToFill.N, negative);
+    dataParse(fastIntSetToFill.D[ESign.POSITIVE], positive);
+    if(negative && fastIntSetToFill.D[ESign.NEGATIVE].length){
+      dataParse(fastIntSetToFill.D[ESign.NEGATIVE], negative);
     }
     return true;
   },

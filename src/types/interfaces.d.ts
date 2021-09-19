@@ -1,4 +1,4 @@
-interface ISimplifiedNativeSet<I> {
+interface ISimplifiedNativeSet {
   /* Fully implemented */
   size: number //* but getter-based
   has: (item: number) => boolean
@@ -15,8 +15,8 @@ interface ISimplifiedNativeSet<I> {
   // keys                 //* Useless even in native Set
   // [Symbol.toStringTag] //* Useless
   // [Symbol.iterator]    //* Unproductive and too verbose
-
-  /// ECMA Future (See proposal: https://github.com/tc39/proposal-set-methods)
+}
+interface IFutureNativeSet<I> { /// ECMA Future (See proposal: https://github.com/tc39/proposal-set-methods)
   intersection: (set: I) => I
   union: (set: I) => I
   difference: (set: I) => I
@@ -27,19 +27,8 @@ interface ISimplifiedNativeSet<I> {
   // isSupersetOf: (set: ISimplifiedNativeSet) => boolean
 }
 
-type FastSetDataField = Uint32List;
-
-interface IStoreUnsigned {
-  // static TAG: string // Must be in the class
-  P: FastSetDataField
-}
-interface IStoreSigned extends IStoreUnsigned {
-  N: FastSetDataField
-}
-interface IStore extends IStoreUnsigned {
-  N?: FastSetDataField
+interface IStore {
+  D: [DataField, DataField]
 }
 
-interface IFastSetInt<I> extends ISimplifiedNativeSet<I>, IStoreSigned {}
-interface IFastSetUint<I> extends ISimplifiedNativeSet<I>, IStoreUnsigned {}
-interface IFastSet<I> extends ISimplifiedNativeSet<I>, IStore {}
+interface IFastSet extends ISimplifiedNativeSet, IStore {}
