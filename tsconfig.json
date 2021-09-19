@@ -13,7 +13,6 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "types": [
       "jest"
     ],
