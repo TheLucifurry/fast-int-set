@@ -1,5 +1,5 @@
 export function sort(arr: number[]): number[] {
-  return arr.sort((a, b) => a - b);
+  return [...new Set(arr.sort((a, b) => a - b))];
 }
 
 export function createArrayOfUint(length: number, step = 1): number[] {

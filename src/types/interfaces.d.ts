@@ -28,7 +28,7 @@ interface IFutureNativeSet<I> { /// ECMA Future (See proposal: https://github.co
 }
 
 interface IStore {
-  D: [DataField, DataField]
+  _: [DataField, DataField]
 }
 
 interface IFastSet extends ISimplifiedNativeSet, IStore {}
