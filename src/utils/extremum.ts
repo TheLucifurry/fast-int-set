@@ -3,5 +3,5 @@ export function min2(a: number, b: number): number {
 }
 
 export function max2(a: number, b: number): number {
-  return a > b ? b : a;
+  return a < b ? b : a;
 }

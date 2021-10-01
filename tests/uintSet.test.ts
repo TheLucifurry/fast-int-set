@@ -1,4 +1,5 @@
-import { sort, createArrayOfUint, createArrayWithRandomInt } from './utils';
+import { createArrayOfUint, createArrayWithRandomInt, sort } from './utils';
+
 import { MAX_BITS } from '../src/consts';
 import UintSet from '../src/sets/uintSet';
 
@@ -93,11 +94,11 @@ describe.each`
 
   it('Method: union => new set with all the items present in both sets', ()=>{
     const fs1 = new FIS([0, 30, 25, 31, 99, 64, 8, 1_234, 1_235, 10_555]);
-    const fs2 = new FIS([1, 25, 3, 99, 63, 8, 1_234, 10_555, 10_558]);
+    const fs2 = new FIS([1, 25, 3, 99, 63, 8, 1_234, 10_555, 12_558]);
 
     const result = fs1.union(fs2).values();
 
-    expect(result).toStrictEqual([0, 1, 3, 8, 25, 30, 31, 63, 64, 99, 1_234, 1_235, 10_555, 10_558]);
+    expect(result).toStrictEqual([0, 1, 3, 8, 25, 30, 31, 63, 64, 99, 1_234, 1_235, 10_555, 12_558]);
   })
 
   it('Method: difference => new set without items present in received set', ()=>{
@@ -111,10 +112,10 @@ describe.each`
 
   it('Method: symmetricDifference => new set of items found only in either this or in received set.', ()=>{
     const fs1 = new FIS([30, 25, 31, 99, 64, 8, 1_234, 1_235, 10_555]);
-    const fs2 = new FIS([0, 1, 25, 3, 99, 63, 8, 1_234, 10_555, 10_558]);
+    const fs2 = new FIS([0, 1, 25, 3, 99, 63, 8, 1_234, 10_555, 12_558]);
 
     const result = fs1.symmetricDifference(fs2).values();
 
-    expect(result).toStrictEqual([0, 1, 3, 30, 31, 63, 64, 1_235, 10_558]);
+    expect(result).toStrictEqual([0, 1, 3, 30, 31, 63, 64, 1_235, 12_558]);
   })
 })

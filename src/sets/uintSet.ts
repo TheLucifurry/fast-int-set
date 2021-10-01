@@ -44,8 +44,8 @@ export default class UintSet extends BaseSet implements IFastSet, IFutureNativeS
       if (!data[cellIndex]) {
         item += MAX_BITS;
       } else {
-        let i = MAX_BITS;
-        while (i--) {
+        let i = -1;
+        while (++i < MAX_BITS) {
           if(data[cellIndex] & (1 << i)) {
             callback(item);
           }
