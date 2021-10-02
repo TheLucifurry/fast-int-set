@@ -1,6 +1,6 @@
 {
   "name": "fast-int-set",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -18,6 +18,7 @@
     "version:patch": "npm version patch --force",
     "version:minor": "npm version minor --force",
     "version:major": "npm version major --force",
+    "prepare": "npm run build",
     "postversion": "git push && npm publish"
   },
   "jest": {
