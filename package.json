@@ -9,7 +9,11 @@
     "benchmark": "ts-node benchmark/index.ts",
     "test": "jest",
     "test_watch": "jest --watch",
-    "test_coverage": "jest --coverage"
+    "test_coverage": "jest --coverage",
+    "version:patch": "npm version patch --force",
+    "version:minor": "npm version minor --force",
+    "version:major": "npm version major --force",
+    "postversion": "git push && npm publish"
   },
   "jest": {
     "preset": "ts-jest",
