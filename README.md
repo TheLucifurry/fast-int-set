@@ -1,5 +1,5 @@
 # Fast-int-set
-> A super-fast Set implementation for integer numbers, whiten on JavaScript  
+> A super-fast Set implementation for integer numbers, whiten in JavaScript  
 > This library has  several data structures focused on working with sets of integer values using get/set, and/or/not/xor operations
 
 ## ✨ Features
@@ -17,7 +17,6 @@
 
 ## 📝 Recommendations
 - If you stored large numbers, don't use iteration-based methods (`forEach`, `size`, `values`)
-
 
 ## 👀 Example
 
@@ -38,8 +37,8 @@ uintSet1.intersection(uintSet2); // => new UintSet([1, 4])
 ## ⚙️ How it works
 This library uses [bitwise operations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND_assignment) to store and process integer values
 ```js
-let bitmask1 = 0b01000000_00000000_00000100_00001011; // Contains: [0, 1, 3, 10, 30]
-let bitmask2 = 0b00000000_00000000_10000000_11000001; // Contains: [0, 6, 7, 15]
+let bitmask1 = 0b01000000_00000000_00000100_00001011; // [0, 1, 3, 10, 30]
+let bitmask2 = 0b00000000_00000000_10000000_11000001; // [0, 6, 7, 15]
 
 // Check for an item
   !!(bitmask1 & (1 << 10)); // has 10 item => true

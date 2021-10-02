@@ -1,8 +1,8 @@
 {
   "name": "fast-int-set",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.ts",
   "scripts": {
     "dev": "webpack",
     "build": "webpack build --mode=production",
