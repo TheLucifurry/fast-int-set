@@ -1,16 +1,25 @@
 {
   "name": "fast-int-set",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
+    "build": "node build.js",
+    "_esbuild_build": "tsc --emitDeclarationOnly --outDir dist && esbuild src/index.ts --bundle --outfile=dist/index.js --global-name=FastIntSet",
     "dev": "webpack",
-    "build": "webpack build --mode=production",
+    "_build": "webpack build --mode=production",
     "benchmark": "ts-node benchmark/index.ts",
     "test": "jest",
     "test_watch": "jest --watch",
@@ -56,9 +65,12 @@
     "babel-jest": "^27.2.0",
     "babel-loader": "^8.2.2",
     "benny": "^3.6.15",
+    "brotli-size": "^4.0.0",
+    "esbuild": "^0.13.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
+    "gzip-size": "^6.0.0",
     "jest": "^27.2.0",
     "ts-jest": "^27.0.5",
     "ts-loader": "^9.2.5",
