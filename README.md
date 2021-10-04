@@ -9,6 +9,12 @@
 - TypeScript support 
 - Node or browser
 - Serialization
+- ES Module support
+
+## 💿 Installation
+```
+npm i fast-int-set
+```
 
 ## ❓ When to use
 - If you need too often read/write (`.add`, `.has`, `.delete`) individual items  
@@ -19,7 +25,6 @@
 - If you stored large numbers, don't use iteration-based methods (`forEach`, `size`, `values`)
 
 ## 👀 Example
-
 ```js
 import { UintSet } from 'fast-int-set';
 
@@ -57,6 +62,5 @@ let bitmask2 = 0b00000000_00000000_10000000_11000001; // [0, 6, 7, 15]
 
 <!--
 ## 📈 Benchmarks
-## 💿 Install
 ## 📘  Documentation
 -->
