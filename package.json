@@ -1,6 +1,6 @@
 {
   "name": "fast-int-set",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -8,18 +8,15 @@
   "module": "dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
+    "dev": "node build.js --dev",
     "build": "node build.js",
-    "_esbuild_build": "tsc --emitDeclarationOnly --outDir dist && esbuild src/index.ts --bundle --outfile=dist/index.js --global-name=FastIntSet",
-    "dev": "webpack",
-    "_build": "webpack build --mode=production",
     "benchmark": "ts-node benchmark/index.ts",
     "test": "jest",
     "test_watch": "jest --watch",
@@ -58,24 +55,16 @@
   },
   "homepage": "https://github.com/TheLucifurry/fast-int-set#readme",
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
-    "@babel/preset-typescript": "^7.15.0",
-    "@types/jest": "^27.0.1",
-    "babel-jest": "^27.2.0",
-    "babel-loader": "^8.2.2",
-    "benny": "^3.6.15",
+    "@types/jest": "^27.0.2",
+    "benny": "^3.7.0",
     "brotli-size": "^4.0.0",
     "esbuild": "^0.13.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
     "gzip-size": "^6.0.0",
-    "jest": "^27.2.0",
+    "jest": "^27.2.4",
     "ts-jest": "^27.0.5",
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.4.3",
-    "webpack": "^5.53.0",
-    "webpack-cli": "^4.8.0"
+    "typescript": "^4.4.3"
   }
 }
