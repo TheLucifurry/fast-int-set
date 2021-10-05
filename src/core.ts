@@ -1,5 +1,7 @@
 import { max2, min2 } from './utils/extremum';
 
+import { DataField } from './types/global';
+
 export function intersection(dfResult: DataField, dfMain: DataField, dfSecondary: DataField): void {
   let i = min2(dfMain.length, dfSecondary.length);
   while (i--) {

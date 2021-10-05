@@ -4,7 +4,7 @@ export function sort(arr: number[]): number[] {
 
 export function createArrayOfUint(length: number, step = 1): number[] {
   const result: number[] = [];
-  for (let i = 0; i < length; i+=step) {
+  for (let i = 0; i < length; i += step) {
     result[i] = i;
   }
   return result;

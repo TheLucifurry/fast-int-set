@@ -1,13 +1,7 @@
 {
-  "ts-node": { // See: https://github.com/TypeStrong/ts-node
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  },
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "es2020",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -23,7 +17,6 @@
   },
   "include": [
     "src/**/*.ts",
-    "tests/**/*.ts"
   ],
   "exclude": [
     "node_modules"

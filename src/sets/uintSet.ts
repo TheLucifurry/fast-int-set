@@ -1,52 +1,60 @@
-import { difference, intersection, symmetricDifference, union } from '../core';
+import { IFastSet, IFutureNativeSet } from '../types/interfaces';
+import {
+  difference,
+  intersection,
+  symmetricDifference,
+  union,
+} from '../core';
 
-import BaseSet from './baseSet';
+import { BaseSet } from './baseSet';
 import { MAX_BITS } from '../consts';
-import countBits from '../utils/countBits';
-import each from '../utils/each';
+import { countBits } from '../utils/countBits';
+import { each } from '../utils/each';
 
 export class UintSet extends BaseSet implements IFastSet, IFutureNativeSet<UintSet> {
   static TAG = 'UintSet';
 
   constructor(items: number[] = []) {
     super();
-    each(items, this.add.bind(this))
+    each(items, this.add.bind(this));
   }
 
-  get size(): number{
+  get size(): number {
     let res = 0;
-    each(this._[SIGN_POSITIVE], (bits) => res += countBits(bits))
-    return res
+    each(this._[SIGN_POSITIVE], (bits) => res += countBits(bits));
+    return res;
   }
 
   add(uint: number): void {
-    const byte = 1 << ( uint % MAX_BITS );
+    const byte = 1 << (uint % MAX_BITS);
     const index = Math.trunc(uint / MAX_BITS);
     this._[SIGN_POSITIVE][index] |= byte;
   }
 
   has(uint: number): boolean {
-    const byte = 1 << ( uint % MAX_BITS );
+    const byte = 1 << (uint % MAX_BITS);
     const index = Math.trunc(uint / MAX_BITS);
     return (this._[SIGN_POSITIVE][index] & byte) !== 0;
   }
 
   delete(uint: number): void {
-    const byte = 1 << ( uint % MAX_BITS );
+    const byte = 1 << (uint % MAX_BITS);
     const index = Math.trunc(uint / MAX_BITS);
     this._[SIGN_POSITIVE][index] &= 0xffff ^ byte;
   }
 
   forEach(callback: (item: number) => void): void {
-    const data = this._[SIGN_POSITIVE], len = data.length;
-    let cellIndex = -1, item = 0;
+    const data = this._[SIGN_POSITIVE];
+    const len = data.length;
+    let cellIndex = -1;
+    let item = 0;
     while (++cellIndex < len) {
       if (!data[cellIndex]) {
         item += MAX_BITS;
       } else {
         let i = -1;
         while (++i < MAX_BITS) {
-          if(data[cellIndex] & (1 << i)) {
+          if (data[cellIndex] & (1 << i)) {
             callback(item);
           }
           item++;
