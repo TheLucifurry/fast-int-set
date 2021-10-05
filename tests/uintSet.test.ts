@@ -1,7 +1,7 @@
 import { createArrayOfUint, createArrayWithRandomInt, sort } from './utils';
 
 import { MAX_BITS } from '../src/consts';
-import UintSet from '../src/sets/uintSet';
+import { UintSet } from '../src';
 
 describe.each`
   case | constructor

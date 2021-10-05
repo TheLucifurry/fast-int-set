@@ -1,8 +1,9 @@
-import Serializer from '../src/serializer';
-import FastIntSet from '../src/index';
-import { sort, createArrayWithRandomInt } from './utils';
+import { createArrayWithRandomInt, sort } from './utils';
 
-const FIS = FastIntSet.UintSet;
+import Serializer from '../src/serializer';
+import { UintSet } from '../src';
+
+const FIS = UintSet;
 
 describe('Serializer', ()=>{
   it('Serialise to string: simple values', () => {

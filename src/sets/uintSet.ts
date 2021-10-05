@@ -1,11 +1,11 @@
-import { ESign, MAX_BITS } from '../consts';
 import { difference, intersection, symmetricDifference, union } from '../core';
 
 import BaseSet from './baseSet';
+import { MAX_BITS } from '../consts';
 import countBits from '../utils/countBits';
 import each from '../utils/each';
 
-export default class UintSet extends BaseSet implements IFastSet, IFutureNativeSet<UintSet> {
+export class UintSet extends BaseSet implements IFastSet, IFutureNativeSet<UintSet> {
   static TAG = 'UintSet';
 
   constructor(items: number[] = []) {
@@ -15,30 +15,30 @@ export default class UintSet extends BaseSet implements IFastSet, IFutureNativeS
 
   get size(): number{
     let res = 0;
-    each(this._[ESign.POSITIVE], (bits) => res += countBits(bits))
+    each(this._[SIGN_POSITIVE], (bits) => res += countBits(bits))
     return res
   }
 
   add(uint: number): void {
     const byte = 1 << ( uint % MAX_BITS );
     const index = Math.trunc(uint / MAX_BITS);
-    this._[ESign.POSITIVE][index] |= byte;
+    this._[SIGN_POSITIVE][index] |= byte;
   }
 
   has(uint: number): boolean {
     const byte = 1 << ( uint % MAX_BITS );
     const index = Math.trunc(uint / MAX_BITS);
-    return (this._[ESign.POSITIVE][index] & byte) !== 0;
+    return (this._[SIGN_POSITIVE][index] & byte) !== 0;
   }
 
   delete(uint: number): void {
     const byte = 1 << ( uint % MAX_BITS );
     const index = Math.trunc(uint / MAX_BITS);
-    this._[ESign.POSITIVE][index] &= 0xffff ^ byte;
+    this._[SIGN_POSITIVE][index] &= 0xffff ^ byte;
   }
 
   forEach(callback: (item: number) => void): void {
-    const data = this._[ESign.POSITIVE], len = data.length;
+    const data = this._[SIGN_POSITIVE], len = data.length;
     let cellIndex = -1, item = 0;
     while (++cellIndex < len) {
       if (!data[cellIndex]) {
@@ -57,25 +57,25 @@ export default class UintSet extends BaseSet implements IFastSet, IFutureNativeS
 
   intersection(set: UintSet): UintSet {
     const res = new UintSet();
-    intersection(res._[ESign.POSITIVE], this._[ESign.POSITIVE], set._[ESign.POSITIVE]);
+    intersection(res._[SIGN_POSITIVE], this._[SIGN_POSITIVE], set._[SIGN_POSITIVE]);
     return res;
   }
 
   union(set: UintSet): UintSet {
     const res = new UintSet();
-    union(res._[ESign.POSITIVE], this._[ESign.POSITIVE], set._[ESign.POSITIVE]);
+    union(res._[SIGN_POSITIVE], this._[SIGN_POSITIVE], set._[SIGN_POSITIVE]);
     return res;
   }
 
   difference(set: UintSet): UintSet {
     const res = new UintSet();
-    difference(res._[ESign.POSITIVE], this._[ESign.POSITIVE], set._[ESign.POSITIVE]);
+    difference(res._[SIGN_POSITIVE], this._[SIGN_POSITIVE], set._[SIGN_POSITIVE]);
     return res;
   }
 
   symmetricDifference(set: UintSet): UintSet {
     const res = new UintSet();
-    symmetricDifference(res._[ESign.POSITIVE], this._[ESign.POSITIVE], set._[ESign.POSITIVE]);
+    symmetricDifference(res._[SIGN_POSITIVE], this._[SIGN_POSITIVE], set._[SIGN_POSITIVE]);
     return res;
   }
 }
