@@ -1,3 +1,6 @@
+import { DataField } from './global';
+
+/* eslint-disable no-unused-vars */
 interface ISimplifiedNativeSet {
   /* Fully implemented */
   size: number //* but getter-based
@@ -16,7 +19,8 @@ interface ISimplifiedNativeSet {
   // [Symbol.toStringTag] //* Useless
   // [Symbol.iterator]    //* Unproductive and too verbose
 }
-interface IFutureNativeSet<I> { /// ECMA Future (See proposal: https://github.com/tc39/proposal-set-methods)
+
+export interface IFutureNativeSet<I> { /// ECMA Future (See proposal: https://github.com/tc39/proposal-set-methods)
   intersection: (set: I) => I
   union: (set: I) => I
   difference: (set: I) => I
@@ -27,8 +31,8 @@ interface IFutureNativeSet<I> { /// ECMA Future (See proposal: https://github.co
   // isSupersetOf: (set: ISimplifiedNativeSet) => boolean
 }
 
-interface IStore {
+export interface IStore {
   _: [DataField, DataField]
 }
 
-interface IFastSet extends ISimplifiedNativeSet, IStore {}
+export interface IFastSet extends ISimplifiedNativeSet, IStore {}
