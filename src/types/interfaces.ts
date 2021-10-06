@@ -1,6 +1,5 @@
 import { DataField } from './global';
 
-/* eslint-disable no-unused-vars */
 interface ISimplifiedNativeSet {
   /* Fully implemented */
   size: number //* but getter-based
