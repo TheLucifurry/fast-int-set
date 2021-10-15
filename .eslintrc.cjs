@@ -1,15 +1,13 @@
 module.exports = {
-  globals: { // sync with defines.js
-    SIGN_POSITIVE: 'readonly',
-    SIGN_NEGATIVE: 'readonly',
-  },
   env: {
     browser: true,
     es2021: true,
     node: true,
   },
   ignorePatterns: [
+    'dist/**/*',
     '*.d.ts',
+    '*.config.*',
   ],
   extends: [
     'airbnb-base',
@@ -34,6 +32,7 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/no-default-export': 2,
     'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': 0,
 
     '@typescript-eslint/ban-ts-comment': 0,
   },

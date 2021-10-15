@@ -1,6 +1,6 @@
 import { DataField } from './types/global';
 import { IStore } from './types/interfaces';
-import { SERIALIZED_STRING_PREFIX } from './consts';
+import { ESign, SERIALIZED_STRING_PREFIX } from './consts';
 import { binToHex } from './utils/binToHex';
 import { each } from './utils/each';
 
@@ -31,10 +31,10 @@ const dataParsersList: typeof dataParseV1[] = [
 
 export const Serializer: ISerializer = {
   toString(fastIntegerSet, headless = false) {
-    const hasNegative = !!fastIntegerSet._[SIGN_NEGATIVE].length;
+    const hasNegative = !!fastIntegerSet._[ESign.NEGATIVE].length;
 
-    const dataPositive = dataStringify(fastIntegerSet._[SIGN_POSITIVE]);
-    const dataNegative = hasNegative ? dataStringify(fastIntegerSet._[SIGN_NEGATIVE] as DataField, '.') : '';
+    const dataPositive = dataStringify(fastIntegerSet._[ESign.POSITIVE]);
+    const dataNegative = hasNegative ? dataStringify(fastIntegerSet._[ESign.NEGATIVE] as DataField, '.') : '';
     const data = dataPositive + (hasNegative ? `.${dataNegative}` : '');
 
     if (headless) return data;
@@ -64,9 +64,9 @@ export const Serializer: ISerializer = {
     }
 
     const dataParse = dataParsersList[+algVersion];
-    dataParse(fastIntSetToFill._[SIGN_POSITIVE], positive);
-    if (negative && fastIntSetToFill._[SIGN_NEGATIVE].length) {
-      dataParse(fastIntSetToFill._[SIGN_NEGATIVE], negative);
+    dataParse(fastIntSetToFill._[ESign.POSITIVE], positive);
+    if (negative && fastIntSetToFill._[ESign.NEGATIVE].length) {
+      dataParse(fastIntSetToFill._[ESign.NEGATIVE], negative);
     }
     return true;
   },
