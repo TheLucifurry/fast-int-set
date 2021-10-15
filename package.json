@@ -14,9 +14,9 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "scripts": {
-    "dev": "node build.js --dev",
-    "format": "prettier-eslint \"src/**/*.ts\"",
+    "dev": "rollup --config rollup.config.ts -w",
     "build": "rollup --config rollup.config.ts",
+    "format": "prettier-eslint \"src/**/*.ts\"",
     "benchmark": "node ./benchmark/index.js",
     "test": "jest",
     "test_watch": "jest --watch",
