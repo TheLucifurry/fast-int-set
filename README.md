@@ -1,5 +1,5 @@
 # Fast-int-set
-> A super-fast Set implementation for integer numbers, whiten in JavaScript  
+> A super-fast Set implementation for integer numbers, written in JavaScript  
 > This library has  several data structures focused on working with sets of integer values using get/set, and/or/not/xor operations
 
 ## ✨ Features
