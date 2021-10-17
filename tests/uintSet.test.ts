@@ -1,17 +1,25 @@
-import { createArrayOfUint, createArrayWithRandomInt, sort } from './utils';
+import {
+  createArrayOfUint, createArrayWithRandomInt, getNearItems, range, sort,
+} from './utils';
 
 import { MAX_BITS } from '../src/consts';
 import { UintSet } from '../src';
 
-describe.each`
-  case | constructor
-  ${'Stable'} | ${UintSet}
-`('FastIntSet: $case', ({ constructor: FIS }: { constructor: typeof UintSet }) => {
-  // ${'Experimental'} | ${FastIntSet.ExpUintSet}
-  it('Accept items in constructor and restores all items by method', () => {
-    const fs = new FIS([0, 2, 5, 12, 13, 30]);
+const FIS = UintSet;
 
-    expect(fs.values()).toStrictEqual([0, 2, 5, 12, 13, 30]);
+describe('UintSet', () => {
+  it('Accept items in constructor', () => {
+    const items = [0, 2, 5, 12, 13, 30, 153, 1825, 5325];
+    const itemsNear = getNearItems(items);
+
+    const fs = new FIS(items);
+
+    items.forEach((item) => {
+      expect(fs.has(item)).toBe(true);
+    });
+    itemsNear.forEach((item) => {
+      expect(fs.has(item)).toBe(false);
+    });
   });
 
   it('Support many different integer values', () => {
@@ -20,7 +28,6 @@ describe.each`
       ...createArrayWithRandomInt(10, 1_000_000, FIS.MAX_INTEGER),
       FIS.MAX_INTEGER,
     ];
-    const itemsSorted = sort(items);
     const fs = new FIS(items);
 
     items.forEach((item) => {
@@ -31,12 +38,41 @@ describe.each`
     expect(fs.has(FIS.MAX_INTEGER)).toBe(false);
   });
 
-  it('Delete items', () => {
-    const fs = new FIS([0, 1, 7, 11, 31, 42, 128]);
+  it('Method: delete - removes items', () => {
+    const items = [0, 1, 7, 11, 31, 42, 128, 1424];
+    const itemsNear = getNearItems(items);
+    const fs = new FIS(items);
+
     fs.delete(7);
     fs.delete(666);
+    fs.delete(666);
     fs.delete(31);
-    expect(fs.values()).toStrictEqual([0, 1, 11, 42, 128]);
+    fs.delete(42);
+    fs.delete(42);
+
+    [0, 1, 11, 128, 1424].forEach((item) => {
+      expect(fs.has(item)).toBe(true);
+    });
+    itemsNear.forEach((item) => {
+      expect(fs.has(item)).toBe(false);
+    });
+  });
+  it('Method: delete - removes items', () => {
+    const items = [...range(0, 64), 42, 128, 315, 405, 1424];
+    const deleteItems = [666, 666, ...range(0, 33), 315, 42, 42, 42];
+    const remainingItems = items.filter((i) => !deleteItems.includes(i));
+
+    const fs = new FIS(items);
+    deleteItems.forEach((item) => {
+      fs.delete(item);
+    });
+
+    remainingItems.forEach((item) => {
+      expect(fs.has(item)).toBe(true);
+    });
+    deleteItems.forEach((item) => {
+      expect(fs.has(item)).toBe(false);
+    });
   });
 
   it('Counting items', () => {
@@ -85,7 +121,7 @@ describe.each`
 
   it('Method: intersection => new set with items present in both sets at the same time', () => {
     const fs1 = new FIS([0, 30, 25, 31, 99, 64, 8, 1_234, 1_235, 10_555]);
-    const fs2 = new FIS([0, 1, 25, 3, 99, 63, 8, 1_234, 10_555, 10_558]);
+    const fs2 = new FIS([0, 1, 25, 3, 99, 63, 8, 1_234, 10_555, 10_758]);
 
     const result = fs1.intersection(fs2).values();
 
@@ -103,7 +139,7 @@ describe.each`
 
   it('Method: difference => new set without items present in received set', () => {
     const fs1 = new FIS([30, 25, 31, 99, 64, 8, 1_234, 1_235, 10_555, 32_964]);
-    const fs2 = new FIS([0, 1, 25, 3, 99, 63, 8, 1_234, 10_555, 10_558, 32_964]);
+    const fs2 = new FIS([0, 1, 25, 3, 99, 63, 8, 1_234, 10_555, 10_558, 32_964, 40_000]);
 
     const result = fs1.difference(fs2).values();
 

@@ -40,7 +40,10 @@ export class UintSet extends BaseSet implements IFastSet, IFutureNativeSet<UintS
   delete(uint: number): void {
     const byte = 1 << (uint % MAX_BITS);
     const index = Math.trunc(uint / MAX_BITS);
-    this._[ESign.POSITIVE][index] &= 0xffff ^ byte;
+    const data = this._[ESign.POSITIVE];
+    if ((data[index] & byte) !== 0) {
+      data[index] ^= byte;
+    }
   }
 
   forEach(callback: (item: number) => void): void {
