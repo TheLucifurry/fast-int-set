@@ -25,6 +25,7 @@ module.exports = {
     'max-len': 0,
     'no-bitwise': 0,
     'no-plusplus': 0,
+    'no-debugger': 1,
     'no-return-assign': 0,
     'no-param-reassign': 0,
 
