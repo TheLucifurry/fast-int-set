@@ -9,6 +9,13 @@ export function createArrayOfUint(length: number, step = 1): number[] {
   }
   return result;
 }
+export function range(from: number, to: number): number[] {
+  const result: number[] = [];
+  for (let i = from; i < to; i++) {
+    result[i] = i;
+  }
+  return result;
+}
 export function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -21,4 +28,12 @@ export function createArrayWithRandomInt(length: number, min: number, max: numbe
     iterateItems[i] = getRandomInt(min, max);
   }
   return iterateItems;
+}
+
+export function getNearItems(items: number[]): number[] {
+  const res: number[] = [];
+  items.forEach((i) => {
+    res.push(i - 1, i + 1);
+  });
+  return res.filter((i) => !items.includes(i));
 }
