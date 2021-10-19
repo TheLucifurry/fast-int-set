@@ -12,7 +12,7 @@
 - ES Module support
 
 ## 📈 Benchmarks
-[![Screenshot](./benchmark/results/screenshot.png)](./benchmark/results/index.chart.html)
+[![Screenshot](./benchmark/results/screenshot.png)](https://thelucifurry.github.io/fast-int-set/index.html)
 
 ## 💿 Installation
 ```
