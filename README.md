@@ -11,6 +11,9 @@
 - Serialization
 - ES Module support
 
+## 📈 Benchmarks
+[![Screenshot](./benchmark/results/screenshot.png)](./benchmark/results/index.chart.html)
+
 ## 💿 Installation
 ```
 npm i fast-int-set

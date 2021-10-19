@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <title>Native Set vs UintSet in target usage</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ddd;
+      }
+
+      .container {
+        box-sizing: border-box;
+        height: 96vh;
+        width: 96vw;
+        margin: 2vh 2vw;
+        resize: both;
+        overflow: hidden;
+        padding: 20px;
+        background: white;
+        box-shadow: 0 0 15px #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="chart1634650877512" width="16" height="9"></canvas>
+    </div>
+    <script>
+      const format = num => {
+        const [whole, fraction] = String(num).split(".");
+        const chunked = [];
+        whole
+          .split("")
+          .reverse()
+          .forEach((char, index) => {
+            if (index % 3 === 0) {
+              chunked.unshift([char]);
+            } else {
+              chunked[0].unshift(char);
+            }
+          });
+
+        const fractionStr = fraction !== undefined ? "." + fraction : "";
+
+        return chunked.map(chunk => chunk.join("")).join(" ") + fractionStr;
+      };
+      const ctx1634650877512 = document
+        .getElementById("chart1634650877512")
+        .getContext("2d");
+      const chart1634650877512 = new Chart(ctx1634650877512, {
+        type: "bar",
+        data: {
+          labels: [
+            "new Set (100)",
+            "new UintSet (100)",
+            "Set add/has/delete (100)",
+            "UintSet add/has/delete (100)",
+            "new Set (1000)",
+            "new UintSet (1000)",
+            "Set add/has/delete (1000)",
+            "UintSet add/has/delete (1000)",
+            "new Set (10000)",
+            "new UintSet (10000)",
+            "Set add/has/delete (10000)",
+            "UintSet add/has/delete (10000)"
+          ],
+          datasets: [
+            {
+              data: [
+                1384971,
+                1730888,
+                87685,
+                1662636,
+                150831,
+                278566,
+                9397,
+                154271,
+                15245,
+                29450,
+                853,
+                15424
+              ],
+              backgroundColor: [
+                "hsl(96.02399999999999, 85%, 55%)",
+                "hsl(120, 85%, 55%)",
+                "hsl(6.083999999999992, 85%, 55%)",
+                "hsl(115.272, 85%, 55%)",
+                "hsl(10.451999999999993, 85%, 55%)",
+                "hsl(19.308000000000007, 85%, 55%)",
+                "hsl(0.6480000000000076, 85%, 55%)",
+                "hsl(10.691999999999997, 85%, 55%)",
+                "hsl(1.0559999999999945, 85%, 55%)",
+                "hsl(2.0400000000000036, 85%, 55%)",
+                "hsl(0.05999999999999659, 85%, 55%)",
+                "hsl(1.0680000000000005, 85%, 55%)"
+              ],
+              borderColor: [
+                "hsl(96.02399999999999, 85%, 55%)",
+                "hsl(120, 85%, 55%)",
+                "hsl(6.083999999999992, 85%, 55%)",
+                "hsl(115.272, 85%, 55%)",
+                "hsl(10.451999999999993, 85%, 55%)",
+                "hsl(19.308000000000007, 85%, 55%)",
+                "hsl(0.6480000000000076, 85%, 55%)",
+                "hsl(10.691999999999997, 85%, 55%)",
+                "hsl(1.0559999999999945, 85%, 55%)",
+                "hsl(2.0400000000000036, 85%, 55%)",
+                "hsl(0.05999999999999659, 85%, 55%)",
+                "hsl(1.0680000000000005, 85%, 55%)"
+              ],
+              borderWidth: 2
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: "Native Set vs UintSet in target usage",
+              font: { size: 20 },
+              padding: 20
+            },
+            legend: {
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: context => {
+                  return format(context.parsed.y) + " ops/s";
+                }
+              },
+              displayColors: false,
+              backgroundColor: "#222222",
+              padding: 10,
+              cornerRadius: 5,
+              intersect: false
+            }
+          },
+          scales: {
+            x: {
+              grid: {
+                color: "#888888"
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: "Operations per second",
+                padding: 10
+              },
+              grid: {
+                color: "#888888"
+              }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
