@@ -6,7 +6,7 @@ import {
   getRandomInt, createArrayWithIntegers, iterate,
 } from './utils.js';
 
-const { UintSet, IntSet } = await import('../dist/index.js');
+const { UintSet, IntSet, createUintSet } = await import('../dist/index.js');
 
 const MAX_ARRAY_LENGTH = 32;
 const maxItem = MAX_ARRAY_LENGTH / 10_000;
@@ -18,15 +18,29 @@ const cases = [100, 1_000, 10_000]
     // const LibrarySet = IntSet; // Uncomment to benchmark library's Set of signed integer values
 
     return [
-      add(`new Set (${itemsCount})`, () => {
-        const set = new Set(items);
-      }),
+      // add(`new Set (${itemsCount})`, () => {
+      //   const set = new Set(items);
+      // }),
       add(`new UintSet (${itemsCount})`, () => {
         const set = new LibrarySet(items);
       }),
+      add(`FuncUS (${itemsCount})`, () => {
+        const set = createUintSet(items);
+      }),
 
-      add(`Set add/has/delete (${itemsCount})`, () => {
-        const set = new Set(items);
+      // add(`Set add/has/delete (${itemsCount})`, () => {
+      //   const set = new Set(items);
+
+      //   return () => {
+      //     items.forEach((i) => {
+      //       set.add(i);
+      //       set.has(i);
+      //       set.delete(i);
+      //     });
+      //   };
+      // }),
+      add(`UintSet add/has/delete (${itemsCount})`, () => {
+        const set = new LibrarySet(items);
 
         return () => {
           items.forEach((i) => {
@@ -36,8 +50,8 @@ const cases = [100, 1_000, 10_000]
           });
         };
       }),
-      add(`UintSet add/has/delete (${itemsCount})`, () => {
-        const set = new LibrarySet(items);
+      add(`FuncUS add/has/delete (${itemsCount})`, () => {
+        const set = createUintSet(items);
 
         return () => {
           items.forEach((i) => {
