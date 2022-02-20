@@ -66,6 +66,10 @@ function values(_: FSD): number[] {
   return res;
 }
 
+// NOTE: FOR SOMEONE, WHO READING THIS:
+// I don't see, that V1 or V2-unfinished (see commits) of FP-variant of the logic can beat the OOP (see main branch) variants in performance.
+// You can try to finish this implementation
+
 export function createUintSet(items: number[] = []): IUintSet {
   let _: [DataField, DataField] = [[], []];
 
