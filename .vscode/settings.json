@@ -1,0 +1,9 @@
+{
+  "jest.jestCommandLine": "./node_modules/.bin/jest",
+  "jest.showCoverageOnLoad": false,
+  "jest.autoRun": {
+    "watch": true,
+    "onSave": "test-file",
+    "onStartup": ["all-tests"]
+  }
+}
