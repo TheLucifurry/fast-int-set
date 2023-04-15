@@ -45,6 +45,7 @@ uintSet1.intersection(uintSet2); // => new UintSet([1, 4])
 ## 📈 Benchmarks
 Small range of values `(0..10_000)`
 ![small_range.png](./benchmarks/results/small_range.png)
+
 Large range of values `(0..100_000)`
 ![large_range.png](./benchmarks/results/large_range.png)
 > As you can see, if you use large values, but with a lot of them, `fast-int-set` is still faster, than native Set
