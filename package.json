@@ -56,7 +56,6 @@
     "terser": "^5.16.9",
     "typescript": "^5.0.4",
     "vite": "^4.2.1",
-    "vite-plugin-dts": "^2.2.0",
     "vitest": "^0.30.1"
   }
 }
