@@ -24,24 +24,13 @@
     "lint": "eslint .",
     "format": "eslint . --fix",
     "benchmark": "node ./benchmark/index.js",
-    "test": "jest",
-    "test_watch": "jest --watch",
-    "test_coverage": "jest --coverage",
+    "test": "vitest",
+    "test_coverage": "_NOT_IMPLEMENTED_ vitest --coverage",
     "version:patch": "npm version patch --force",
     "version:minor": "npm version minor --force",
     "version:major": "npm version major --force",
     "prepare": "npm run build",
     "postversion": "git push && npm publish"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "transform": {
-      "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest"
-    },
-    "transformIgnorePatterns": [
-      "node_modules/(?!variables/.*)"
-    ]
   },
   "repository": {
     "type": "git",
@@ -62,14 +51,12 @@
   "homepage": "https://github.com/TheLucifurry/fast-int-set#readme",
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.4",
-    "@types/jest": "^29.5.0",
     "benny": "^3.7.1",
     "eslint": "^8.38.0",
-    "jest": "^29.5.0",
     "terser": "^5.16.9",
-    "ts-jest": "^29.1.0",
     "typescript": "^5.0.4",
     "vite": "^4.2.1",
-    "vite-plugin-dts": "^2.2.0"
+    "vite-plugin-dts": "^2.2.0",
+    "vitest": "^0.30.1"
   }
 }

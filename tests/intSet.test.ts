@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest'
 import { MAX_BITS } from '../src/consts'
 import { IntSet } from '../src'
 import {
@@ -64,7 +65,7 @@ describe('IntSet', () => {
     const fs = new FIS(items)
 
     const outputItems: number[] = []
-    const cb = jest.fn((item) => {
+    const cb = vi.fn((item) => {
       outputItems.push(item)
     })
     fs.forEach(cb)

@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { Serializer } from '../src/serializer'
 import { UintSet } from '../src'
 import { createArrayWithRandomInt, sort } from './utils'
