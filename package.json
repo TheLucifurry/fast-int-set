@@ -4,12 +4,12 @@
   "description": "",
   "type": "module",
   "types": "dist/index.d.ts",
-  "main": "./dist/fast-int-set.umd.cjs",
-  "module": "./dist/fast-int-set.js",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/fast-int-set.js",
-      "require": "./dist/fast-int-set.umd.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
     }
   },
   "files": [

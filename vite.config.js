@@ -6,7 +6,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'FastIntSet',
-      fileName: 'fast-int-set',
+      fileName: 'index',
       formats: ['es', 'umd'],
     },
     minify: 'terser'
