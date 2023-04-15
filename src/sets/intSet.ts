@@ -16,7 +16,7 @@ import { BaseSet } from './baseSet'
 export class IntSet extends BaseSet implements IFastSet, IFutureNativeSet<IntSet> {
   static MIN_INTEGER = -MAX_ARRAY_LENGTH * MAX_BITS - 1
 
-  static TAG = 'IntSet'
+  static TAG = IntSet.name
 
   constructor(items: number[] = []) {
     super()

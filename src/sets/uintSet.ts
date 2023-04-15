@@ -12,7 +12,7 @@ import { each } from '../utils/each'
 import { BaseSet } from './baseSet'
 
 export class UintSet extends BaseSet implements IFastSet, IFutureNativeSet<UintSet> {
-  static TAG = 'UintSet'
+  static TAG = UintSet.name
 
   constructor(items: number[] = []) {
     super()
