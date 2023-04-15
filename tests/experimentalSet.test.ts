@@ -1,17 +1,17 @@
 import { describe, expect, it, vi } from 'vitest'
 import { MAX_BITS } from '../src/consts'
-import { UintSet } from '../src'
+// import { ExperimentalSet } from '../src'
 import {
   createArrayOfUint, createArrayWithRandomInt, getNearItems, range, sort,
 } from './utils'
 
 function createFIS(items?: number[]) {
-  return new UintSet(items)
+  return new ExperimentalSet(items)
 }
 
-const { MAX_INTEGER } = UintSet
+const { MAX_INTEGER } = ExperimentalSet
 
-describe('UintSet', () => {
+describe('ExperimentalSet', () => {
   it('Accept items in constructor', () => {
     const items = [0, 2, 5, 12, 13, 30, 153, 1825, 5325]
     const itemsNear = getNearItems(items)
@@ -102,10 +102,10 @@ describe('UintSet', () => {
     expect(fs.has(1)).toBe(false)
   })
 
-  it('Support big items', () => {
-    const fs = createFIS([30, 5125, 31, 99, 64, 846, 1032, 74_124, 14_412_124])
+  it('Support big items and iterate in the order of addition', () => {
+    const fs = createFIS([30, 5125, 31, 99, 14_412_124, 64, 846, 1032, 74_124])
 
-    expect(fs.values()).toStrictEqual([30, 31, 64, 99, 846, 1032, 5125, 74_124, 14_412_124])
+    expect(fs.values()).toStrictEqual([30, 5125, 31, 99, 14_412_124, 64, 846, 1032, 74_124])
   })
 
   it('Iterate every item', () => {

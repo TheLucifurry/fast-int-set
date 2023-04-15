@@ -1,4 +1,4 @@
-import { DataField } from './global';
+import type { DataField } from './global'
 
 interface ISimplifiedNativeSet {
   /* Fully implemented */
@@ -34,4 +34,4 @@ export interface IStore {
   _: [DataField, DataField]
 }
 
-export interface IFastSet extends ISimplifiedNativeSet, IStore {}
+export interface IFastSet extends ISimplifiedNativeSet, IStore { }

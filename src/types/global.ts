@@ -1,1 +1,1 @@
-export type DataField = Uint32List;
+export type DataField = Uint32List
