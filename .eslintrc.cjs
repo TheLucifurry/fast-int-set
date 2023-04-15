@@ -9,6 +9,7 @@ module.exports = {
     'dist/**/*',
     '*.d.ts',
     '*.config.*',
+    'README.md',
   ],
   rules: {
     // 'max-len': 0,
