@@ -51,7 +51,6 @@
   "homepage": "https://github.com/TheLucifurry/fast-int-set#readme",
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.4",
-    "benny": "^3.7.1",
     "eslint": "^8.38.0",
     "terser": "^5.16.9",
     "typescript": "^5.0.4",
