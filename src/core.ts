@@ -25,3 +25,33 @@ export function symmetricDifference(dfResult: DataField, dfMain: DataField, dfSe
   while (i--)
     dfResult[i] = dfMain[i] ^ dfSecondary[i]
 }
+
+export function isSubsetAofB(dfMain: DataField, dfSecondary: DataField): boolean {
+  if (!dfMain.length || !dfSecondary.length)
+    return false
+  let i = dfMain.length
+  while (i--) {
+    const mainFrag = dfMain[i]
+    if (!mainFrag)
+      continue
+    const secFrag = dfSecondary[i]
+    const isSubsetFrag = (mainFrag | secFrag) === secFrag
+    if (!isSubsetFrag)
+      return false
+  }
+  return true
+}
+
+export function isDisjointsAB(dfMain: DataField, dfSecondary: DataField): boolean {
+  if (!dfMain.length || !dfSecondary.length)
+    return true
+  let i = dfMain.length
+  while (i--) {
+    const mainFrag = dfMain[i]
+    const secFrag = dfSecondary[i]
+    const isIntersectsFrag = (mainFrag & secFrag) !== 0
+    if (isIntersectsFrag)
+      return false
+  }
+  return true
+}

@@ -2,6 +2,8 @@ import type { IFastSet, IFutureNativeSet } from '../types/interfaces'
 import {
   difference,
   intersection,
+  isDisjointsAB,
+  isSubsetAofB,
   symmetricDifference,
   union,
 } from '../core'
@@ -119,5 +121,20 @@ export class IntSet extends BaseSet implements IFastSet, IFutureNativeSet<IntSet
     symmetricDifference(res._[ESign.POSITIVE], this._[ESign.POSITIVE], set._[ESign.POSITIVE])
     symmetricDifference(res._[ESign.NEGATIVE], this._[ESign.NEGATIVE], set._[ESign.NEGATIVE])
     return res
+  }
+
+  isSubsetOf(set: IntSet): boolean {
+    return isSubsetAofB(this._[ESign.POSITIVE], set._[ESign.POSITIVE])
+      && isSubsetAofB(this._[ESign.NEGATIVE], set._[ESign.NEGATIVE])
+  }
+
+  isSupersetOf(set: IntSet): boolean {
+    return isSubsetAofB(set._[ESign.POSITIVE], this._[ESign.POSITIVE])
+      && isSubsetAofB(set._[ESign.NEGATIVE], this._[ESign.NEGATIVE])
+  }
+
+  isDisjointFrom(set: IntSet): boolean {
+    return isDisjointsAB(this._[ESign.POSITIVE], set._[ESign.POSITIVE])
+      && isDisjointsAB(this._[ESign.NEGATIVE], set._[ESign.NEGATIVE])
   }
 }

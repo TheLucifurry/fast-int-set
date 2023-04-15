@@ -24,10 +24,9 @@ export interface IFutureNativeSet<I> { /// ECMA Future (See proposal: https://gi
   union: (set: I) => I
   difference: (set: I) => I
   symmetricDifference: (set: I) => I
-  // TODO: Implement this
-  // isSubsetOf: (set: ISimplifiedNativeSet) => boolean
-  // isDisjointFrom: (set: ISimplifiedNativeSet) => boolean
-  // isSupersetOf: (set: ISimplifiedNativeSet) => boolean
+  isSubsetOf: (set: I) => boolean
+  isSupersetOf: (set: I) => boolean
+  isDisjointFrom: (set: I) => boolean
 }
 
 export interface IStore {

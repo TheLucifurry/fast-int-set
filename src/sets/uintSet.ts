@@ -2,6 +2,8 @@ import type { IFastSet, IFutureNativeSet } from '../types/interfaces'
 import {
   difference,
   intersection,
+  isDisjointsAB,
+  isSubsetAofB,
   symmetricDifference,
   union,
 } from '../core'
@@ -88,5 +90,17 @@ export class UintSet extends BaseSet implements IFastSet, IFutureNativeSet<UintS
     const res = new UintSet()
     symmetricDifference(res._[ESign.POSITIVE], this._[ESign.POSITIVE], set._[ESign.POSITIVE])
     return res
+  }
+
+  isSubsetOf(set: UintSet): boolean {
+    return isSubsetAofB(this._[ESign.POSITIVE], set._[ESign.POSITIVE])
+  }
+
+  isSupersetOf(set: UintSet): boolean {
+    return isSubsetAofB(set._[ESign.POSITIVE], this._[ESign.POSITIVE])
+  }
+
+  isDisjointFrom(set: UintSet): boolean {
+    return isDisjointsAB(this._[ESign.POSITIVE], set._[ESign.POSITIVE])
   }
 }

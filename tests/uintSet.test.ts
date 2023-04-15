@@ -158,4 +158,51 @@ describe('UintSet', () => {
 
     expect(result).toStrictEqual([0, 1, 3, 30, 31, 63, 64, 1_235, 12_558])
   })
+
+  it('Method: isSubsetOf', () => {
+    const fs1 = createFIS([0, 3, 2, 5])
+
+    const fs2 = createFIS([0, 3, 2, 5, 10, 60, 61, 1_323, 3_953])
+    const fs3 = createFIS([0, 3, 2, 5, 1_323, 3_953])
+    expect(fs1.isSubsetOf(fs2)).toBe(true)
+    expect(fs1.isSubsetOf(fs3)).toBe(true)
+
+    const fs4 = createFIS([0, 4, 5, 30])
+    const fs5 = createFIS()
+    const fs6 = createFIS([0, 3])
+    expect(fs1.isSubsetOf(fs4)).toBe(false)
+    expect(fs1.isSubsetOf(fs5)).toBe(false)
+    expect(fs1.isSubsetOf(fs6)).toBe(false)
+  })
+
+  it('Method: isSupersetOf', () => {
+    const fs1 = createFIS([0, 3, 2, 5, 10, 60, 61, 1_323, 3_953])
+
+    const fs2 = createFIS([0, 3, 2, 5])
+    const fs3 = createFIS([0, 3, 2, 5, 1_323, 3_953])
+    expect(fs1.isSupersetOf(fs2)).toBe(true)
+    expect(fs1.isSupersetOf(fs3)).toBe(true)
+
+    const fs4 = createFIS([0, 4, 5, 30])
+    const fs5 = createFIS()
+    const fs6 = createFIS([0, 3, 2, 5, 10, 60, 61, 1_323, 3_953, 7_777])
+    expect(fs1.isSupersetOf(fs4)).toBe(false)
+    expect(fs1.isSupersetOf(fs5)).toBe(false)
+    expect(fs1.isSupersetOf(fs6)).toBe(false)
+  })
+
+  it('Method: isDisjointFrom', () => {
+    const fs1 = createFIS([0, 3, 2, 5, 10, 60, 61, 1_323, 3_953])
+    const fs2 = createFIS([0, 3, 2, 5])
+    const fs3 = createFIS([0, 3, 2, 5, 1_323, 3_953])
+    const fs4 = createFIS([1, 6, 7, 1_000])
+    const fs5 = createFIS()
+
+    expect(fs1.isDisjointFrom(fs2)).toBe(false)
+    expect(fs1.isDisjointFrom(fs3)).toBe(false)
+    expect(fs1.isDisjointFrom(fs4)).toBe(true)
+    expect(fs4.isDisjointFrom(fs1)).toBe(true)
+    expect(fs1.isDisjointFrom(fs5)).toBe(true)
+    expect(fs5.isDisjointFrom(fs1)).toBe(true)
+  })
 })
