@@ -20,10 +20,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && tsc",
     "lint": "eslint .",
     "format": "eslint . --fix",
-    "benchmark": "node ./benchmark/index.js",
+    "benchmark": "vitest bench",
     "test": "vitest",
     "test_coverage": "_NOT_IMPLEMENTED_ vitest --coverage",
     "version:patch": "npm version patch --force",
@@ -41,7 +41,9 @@
     "set",
     "bit",
     "mask",
-    "bitwise"
+    "bitwise",
+    "fast-int-set",
+    "fast-set"
   ],
   "author": "Lucifurry",
   "license": "ISC",
