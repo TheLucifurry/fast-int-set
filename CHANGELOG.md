@@ -5,6 +5,11 @@
 
 -->
 
+## [1.0.0] - 2023-04-15
+
+### Added
+- Add `isSubsetOf`, `isSupersetOf` and `isDisjointFrom` methods
+
 ## [0.2.0] - 2023-04-15
 
 ### Added
