@@ -1,15 +1,12 @@
 import { describe, expect, it, vi } from 'vitest'
 import { MAX_BITS } from '../src/consts'
 import { UintSet } from '../src'
-import { createUintSet } from '../src/sets/functional/uintSet'
 import {
   createArrayOfUint, createArrayWithRandomInt, getNearItems, range, sort,
 } from './utils'
 
-// Switch comments to test needed unit
-// const createFIS = (items?: number[]) => new UintSet(items);
 function createFIS(items?: number[]) {
-  return createUintSet(items)
+  return new UintSet(items)
 }
 
 const { MAX_INTEGER } = UintSet
