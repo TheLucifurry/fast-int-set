@@ -16,7 +16,8 @@
   "scripts": {
     "dev": "rollup --config rollup.config.ts -w",
     "build": "rollup --config rollup.config.ts",
-    "format": "prettier-eslint \"src/**/*.ts\"",
+    "lint": "eslint .",
+    "format": "eslint . --fix",
     "benchmark": "node ./benchmark/index.js",
     "test": "jest",
     "test_watch": "jest --watch",
