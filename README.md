@@ -5,10 +5,9 @@ with sets of integer values using get/set, and/or/not/xor operations
 
 ## ✨ Features
 - Better performance, than native Set
-- Supports [future Set methods](https://github.com/tc39/proposal-set-methods)
+- Supports [modern Set methods](https://github.com/tc39/proposal-set-methods)
 - Zero dependencies
-- TypeScript support 
-- Node or browser
+- Node and browser
 - Serialization
 - ES Module and UMD support
 
@@ -43,11 +42,8 @@ uintSet1.intersection(uintSet2); // => new UintSet([1, 4])
 ```
 
 ## 📈 Benchmarks
-Small range of values `(0..10_000)`
-![small_range.png](./benchmarks/results/small_range.png)
+![small_range.png](./benchmarks/results/image.png)
 
-Large range of values `(0..100_000)`
-![large_range.png](./benchmarks/results/large_range.png)
 > As you can see, if you use large values, but with a lot of them, `fast-int-set` is still faster, than native Set
 
 ## ⚙️ How it works
